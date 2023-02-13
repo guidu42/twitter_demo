@@ -3,7 +3,7 @@ package com.hb.guillaume_jason.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwitterUser {
+public class TwitterUser implements Identifiable{
     private Integer id;
     private String username;
     private String password;
@@ -17,11 +17,11 @@ public class TwitterUser {
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

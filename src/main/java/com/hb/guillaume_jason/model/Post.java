@@ -1,6 +1,6 @@
 package com.hb.guillaume_jason.model;
 
-public class Post {
+public class Post implements Identifiable {
     private Integer id;
     private String title;
     private String content;

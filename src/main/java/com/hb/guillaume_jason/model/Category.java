@@ -1,6 +1,6 @@
 package com.hb.guillaume_jason.model;
 
-public class Category {
+public class Category implements Identifiable{
     private Integer id;
     private String label;
 
@@ -12,11 +12,11 @@ public class Category {
         this.label = label;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
