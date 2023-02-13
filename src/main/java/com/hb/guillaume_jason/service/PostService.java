@@ -24,4 +24,8 @@ public class PostService {
         }
         return postDTOS;
     }
+
+    public void add(PostDTO postDTO) {
+        this.postRepository.save(new Post(postDTO.title(), postDTO.content(), postDTO.categoryId()));
+    }
 }
