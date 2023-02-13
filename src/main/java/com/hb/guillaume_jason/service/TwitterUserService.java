@@ -9,6 +9,8 @@ import com.hb.guillaume_jason.repository.TwitterUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TwitterUserService {
 	
@@ -55,6 +57,13 @@ public class TwitterUserService {
     }
     
     public void saveUser(TwitterUserFormDTO inputUser) {
+        List<TwitterUser> existingUsers = this.twitterUserRepository.getAll();
+        for (TwitterUser twitterUser : existingUsers) {
+            if (twitterUser.getUsername().equals(inputUser.username())) {
+                return;
+            }
+        }
+
     	TwitterUser user = new TwitterUser();
 		user.setUsername(inputUser.username());
 		user.setPassword(passwordEncoder.encode(inputUser.password()));
