@@ -1,0 +1,28 @@
+[ {
+  "id" : 1,
+  "label" : "Java"
+}, {
+  "id" : 2,
+  "label" : "PHP"
+}, {
+  "id" : 3,
+  "label" : "Angular"
+}, {
+  "id" : 4,
+  "label" : "ReactJS"
+}, {
+  "id" : 5,
+  "label" : "VueJs"
+}, {
+  "id" : 6,
+  "label" : "Symfony"
+}, {
+  "id" : 7,
+  "label" : "Spring"
+}, {
+  "id" : 8,
+  "label" : "SQL"
+}, {
+  "id" : 9,
+  "label" : "NoSQL"
+}]
