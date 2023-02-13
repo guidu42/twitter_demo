@@ -9,6 +9,8 @@ import com.hb.guillaume_jason.service.PostService;
 import com.hb.guillaume_jason.service.TwitterUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -39,4 +41,20 @@ public class PostController {
         return new ModelAndView("redirect:/login");
     }
 
+    @GetMapping("/posts/new")
+    public ModelAndView newPost() {
+        PostDTO postDTO = new PostDTO(null, null, null);
+        List<CategoryDTO> allCategories = this.categoryService.getAll();
+        ModelAndView mav = new ModelAndView("/posts_new");
+        mav.addObject("post", postDTO);
+        mav.addObject("allCategories", allCategories);
+        return mav;
+    }
+
+    @PostMapping("/posts/new")
+    public ModelAndView newPostAction(@ModelAttribute PostDTO postDTO) {
+        this.postService.add(postDTO);
+
+        return new ModelAndView("redirect:/posts");
+    }
 }

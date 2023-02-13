@@ -2,10 +2,15 @@
   "id" : 1,
   "title" : "first blog post",
   "content" : "this blog will be awesome, trust me !",
-  "category": 1
+  "category" : 1
 }, {
   "id" : 2,
   "title" : "some news",
   "content" : "it's incredible ! 1 person saw my first blog post *_*",
-  "category": 2
+  "category" : 2
+}, {
+  "id" : 3,
+  "title" : "création d'un post",
+  "content" : "test d'un post",
+  "category" : 3
 } ]
