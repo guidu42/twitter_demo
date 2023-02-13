@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class AbstractRepository<T extends Identifiable> {
+abstract public class AbstractRepository<T extends Identifiable> {
     protected String fileName;
 
     public AbstractRepository(String fileName) {
@@ -86,19 +86,6 @@ public class AbstractRepository<T extends Identifiable> {
         return false;
     }
 
-    protected List<T> readFromData() {
-        ObjectMapper mapper = new ObjectMapper();
-        List<T> values = new ArrayList<>();
-        try {
-            File jsonDataFile = new ClassPathResource(this.fileName).getFile();
-            values = mapper.readValue(
-                    jsonDataFile,
-                    new TypeReference<List<T>>() {}
-            );
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+    protected abstract List<T> readFromData();
 
-        return values;
-    }
 }

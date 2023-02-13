@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 
@@ -27,6 +28,23 @@ public class TwitterUserRepository extends AbstractRepository<TwitterUser> {
 			}
 		}
 		return null;
+	}
+
+	protected List<TwitterUser> readFromData() {
+		ObjectMapper mapper = new ObjectMapper();
+		List<TwitterUser> values = new ArrayList<>();
+		try {
+			File jsonDataFile = new ClassPathResource(this.fileName).getFile();
+			values = mapper.readValue(
+					jsonDataFile,
+					new TypeReference<List<TwitterUser>>() {
+					}
+			);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return values;
 	}
     
 }

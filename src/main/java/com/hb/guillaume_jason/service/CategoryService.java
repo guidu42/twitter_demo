@@ -12,6 +12,10 @@ import java.util.List;
 public class CategoryService {
     private CategoryRepository categoryRepository;
 
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
+
     public List<CategoryDTO> findByIds(List<Integer> categoriesId) {
         List<CategoryDTO> categoryDTOS = new ArrayList<>();
         for(Integer categoryId : categoriesId) {
