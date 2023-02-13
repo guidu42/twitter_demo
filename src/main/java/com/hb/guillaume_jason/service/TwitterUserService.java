@@ -2,16 +2,22 @@ package com.hb.guillaume_jason.service;
 
 import com.hb.guillaume_jason.dto.TwitterUserDTO;
 import com.hb.guillaume_jason.dto.TwitterUserProfilDTO;
+import com.hb.guillaume_jason.dto.TwitterUserFormDTO;
 import com.hb.guillaume_jason.model.TwitterUser;
 import com.hb.guillaume_jason.repository.TwitterUserRepository;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TwitterUserService {
+	
     private TwitterUserRepository twitterUserRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public TwitterUserService(TwitterUserRepository twitterUserRepository) {
+    public TwitterUserService(TwitterUserRepository twitterUserRepository, PasswordEncoder passwordEncoder) {
         this.twitterUserRepository = twitterUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public TwitterUserDTO findById(Integer id) {
@@ -47,4 +53,11 @@ public class TwitterUserService {
             this.twitterUserRepository.save(twitterUser);
         }
     }
+    
+    public void saveUser(TwitterUserFormDTO inputUser) {
+    	TwitterUser user = new TwitterUser();
+		user.setUsername(inputUser.username());
+		user.setPassword(passwordEncoder.encode(inputUser.password()));
+		twitterUserRepository.save(user);
+	}
 }

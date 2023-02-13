@@ -31,7 +31,6 @@ public class PostController {
 
         if (userDTO != null) {
             List<PostDTO> posts = this.postService.findByCategoryIds(userDTO.categoriesId());
-//            List<CategoryDTO> categories = this.categoryService.findByIds(userDTO.categoriesId());
 
             ModelAndView mav = new ModelAndView("/posts");
             mav.addObject("posts", posts);
@@ -39,4 +38,5 @@ public class PostController {
         }
         return new ModelAndView("redirect:/login");
     }
+
 }
