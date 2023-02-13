@@ -35,6 +35,23 @@ public class AbstractRepository<T extends Identifiable> {
         return null;
     }
 
+    public boolean remove(Integer id) {
+        List<T> existingValues = this.getAll();
+        T valueToRemove = null;
+        for (T value : existingValues) {
+            if (value.getId().equals(id)) {
+                valueToRemove = value;
+            }
+        }
+        if (valueToRemove != null) {
+            existingValues.remove(valueToRemove);
+
+            return this.writeToData(existingValues);
+        }
+
+        return false;
+    }
+
     public boolean save(T value) {
         List<T> existingValues = this.getAll();
         int newId = 0;
@@ -50,10 +67,14 @@ public class AbstractRepository<T extends Identifiable> {
         value.setId(newId);
         existingValues.add(value);
 
+        return this.writeToData(existingValues);
+    }
+
+    private boolean writeToData(List<T> values) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             File newFile = new File("src/main/resources/" + this.fileName);
-            String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(existingValues);
+            String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(values);
             BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
             writer.write(jsonString);
             writer.close();
@@ -62,7 +83,6 @@ public class AbstractRepository<T extends Identifiable> {
         }catch (IOException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
