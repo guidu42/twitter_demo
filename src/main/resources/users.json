@@ -2,10 +2,10 @@
   "id" : 1,
   "username" : "user",
   "password" : "$2a$12$a5uMRm0MNoSWZmZ3c1ZsYeDppRyTxorA54Ubmp3ShZTOwaUKIvOku",
-  "categories" : [1]
+  "categories" : [ 1, 2 ]
 }, {
   "id" : 2,
   "username" : "admin",
   "password" : "$2a$12$5Imjk1at5PVBS3CyKSXBKOJu2pdlbGQxFJB79UBA6CwrAPRpw6f4K",
-  "categories" : [2]
-}]
+  "categories" : [ 2 ]
+} ]

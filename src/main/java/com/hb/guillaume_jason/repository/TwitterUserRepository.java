@@ -46,5 +46,5 @@ public class TwitterUserRepository extends AbstractRepository<TwitterUser> {
 
 		return values;
 	}
-    
+
 }

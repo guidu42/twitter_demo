@@ -27,4 +27,13 @@ public class CategoryService {
 
         return categoryDTOS;
     }
+
+    public List<CategoryDTO> getAll() {
+        List<Category> categories = this.categoryRepository.getAll();
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        for (Category category : categories) {
+            categoryDTOS.add(new CategoryDTO(category.getId(), category.getLabel()));
+        }
+        return  categoryDTOS;
+    }
 }

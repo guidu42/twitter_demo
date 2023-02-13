@@ -54,18 +54,26 @@ abstract public class AbstractRepository<T extends Identifiable> {
 
     public boolean save(T value) {
         List<T> existingValues = this.getAll();
-        int newId = 0;
-        for (T existingValue : existingValues) {
-            if (existingValue.getId().equals(value.getId())) {
-                return false;
+        if (value.getId() == null) {
+            int newId = 0;
+            for (T existingValue : existingValues) {
+                if (existingValue.getId().equals(value.getId())) {
+                    return false;
+                }
+                if (existingValue.getId() >= newId) {
+                    newId = existingValue.getId() + 1;
+                }
             }
-            if (existingValue.getId() >= newId) {
-                newId = existingValue.getId() + 1;
+            value.setId(newId);
+            existingValues.add(value);
+        } else {
+            for (T existingValue : existingValues) {
+                if (Objects.equals(existingValue.getId(), value.getId())) {
+                    int index = existingValues.indexOf(existingValue);
+                    existingValues.set(index, value);
+                }
             }
         }
-
-        value.setId(newId);
-        existingValues.add(value);
 
         return this.writeToData(existingValues);
     }
@@ -75,6 +83,7 @@ abstract public class AbstractRepository<T extends Identifiable> {
         try {
             File newFile = new File("src/main/resources/" + this.fileName);
             String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(values);
+            System.out.println(jsonString);
             BufferedWriter writer = new BufferedWriter(new FileWriter(newFile));
             writer.write(jsonString);
             writer.close();
