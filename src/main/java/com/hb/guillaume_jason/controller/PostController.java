@@ -1,5 +1,6 @@
 package com.hb.guillaume_jason.controller;
 
+import com.hb.guillaume_jason.configuration.SecurityConfig;
 import com.hb.guillaume_jason.dto.CategoryDTO;
 import com.hb.guillaume_jason.dto.TwitterUserDTO;
 import com.hb.guillaume_jason.service.CategoryService;
@@ -22,7 +23,7 @@ public class PostController {
 
     @GetMapping("/posts")
     public ModelAndView index() {
-        TwitterUserDTO userDTO = this.twitterUserService.findById(SecurityConfig.getUserId());
+        TwitterUserDTO userDTO = this.twitterUserService.findByUsername(SecurityConfig.getUserName());
 
         if (userDTO != null) {
             List<CategoryDTO> categories = this.categoryService.findByIds(userDTO.categoriesId());

@@ -20,4 +20,12 @@ public class TwitterUserService {
         }
         return null;
     }
+
+    public TwitterUserDTO findByUsername(String userName) {
+        TwitterUser twitterUser = this.twitterUserRepository.getUserByUsername(userName);
+        if (twitterUser != null) {
+            return new TwitterUserDTO(twitterUser.getUsername(), twitterUser.getPassword(), twitterUser.getCategories());
+        }
+        return null;
+    }
 }

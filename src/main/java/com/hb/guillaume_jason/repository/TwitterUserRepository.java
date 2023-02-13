@@ -17,23 +17,9 @@ public class TwitterUserRepository extends AbstractRepository<TwitterUser> {
     public TwitterUserRepository() {
         super("users.json");
     }
-    
-    public List<TwitterUser> getUsers() {
-		List<TwitterUser> users = new ArrayList<>();
 
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			File resourceJson = new File("src/main/resources/users.json");
-			users = mapper.readValue(resourceJson, new TypeReference<List<TwitterUser>>() {});
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return users;
-	}
-    
     public TwitterUser getUserByUsername(String username) {
-
-		List<TwitterUser> users = getUsers();
+		List<TwitterUser> users = getAll();
 
 		for (TwitterUser user : users) {
 			if (user.getUsername().equals(username)) {
