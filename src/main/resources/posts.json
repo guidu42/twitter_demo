@@ -13,4 +13,9 @@
   "title" : "création d'un post",
   "content" : "test d'un post",
   "category" : 3
+}, {
+  "id" : 4,
+  "title" : "Toto fait du vélo",
+  "content" : "il était une fois en argentine toto faisait du vélo, et il s'est fait un gros bobo",
+  "category" : 7
 } ]

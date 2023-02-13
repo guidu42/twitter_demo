@@ -23,7 +23,7 @@ public class CategoryRepository extends AbstractRepository<Category>{
         ObjectMapper mapper = new ObjectMapper();
         List<Category> values = new ArrayList<>();
         try {
-            File jsonDataFile = new ClassPathResource(this.fileName).getFile();
+            File jsonDataFile = new File("src/main/resources/" + this.fileName);
             values = mapper.readValue(
                     jsonDataFile,
                     new TypeReference<List<Category>>() {

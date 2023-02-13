@@ -23,7 +23,7 @@ public class PostRepository extends AbstractRepository<Post> {
         ObjectMapper mapper = new ObjectMapper();
         List<Post> values = new ArrayList<>();
         try {
-            File jsonDataFile = new ClassPathResource(this.fileName).getFile();
+            File jsonDataFile = new File("src/main/resources/" + this.fileName);
             values = mapper.readValue(
                     jsonDataFile,
                     new TypeReference<List<Post>>() {
