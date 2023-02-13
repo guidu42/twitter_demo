@@ -15,15 +15,15 @@
 	  	<div>
 		    <label class="form-label" for="">Nom</label>
 		    <input class="form-control" type="text" th:field="*{username}">
-		    <p th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}" />
+		    <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}" />
 	    </div>
 	    <div>
 		    <label class="form-label" for="">Mot de passe</label>
 		    <input class="form-control" type="password" th:field="*{password}">
-		    <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" />
+		    <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" />
 	    </div>
     
-    	<input type="submit" class="btn btn-primary" value="Register">
+    	<input type="submit" class="btn btn-primary my-3" value="Register">
 	
 	</form>
 </section>
