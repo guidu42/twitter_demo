@@ -7,7 +7,7 @@ public class TwitterUser implements Identifiable{
     private Integer id;
     private String username;
     private String password;
-    List<Category> categories = new ArrayList<>();
+    List<Integer> categoriesId = new ArrayList<>();
 
     public TwitterUser() {
     }
@@ -41,17 +41,17 @@ public class TwitterUser implements Identifiable{
         this.password = password;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<Integer> getCategories() {
+        return categoriesId;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategories(List<Integer> categories) {
+        this.categoriesId = categories;
     }
 
-    public void addCategory(Category category) {
-        if (!categories.contains(category)) {
-            categories.add(category);
+    public void addCategory(Integer category) {
+        if (!categoriesId.contains(category)) {
+            categoriesId.add(category);
         }
     }
 }
