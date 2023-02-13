@@ -6,6 +6,8 @@ import com.hb.guillaume_jason.dto.TwitterUserFormDTO;
 import com.hb.guillaume_jason.model.TwitterUser;
 import com.hb.guillaume_jason.repository.TwitterUserRepository;
 
+import jakarta.validation.ValidatorFactory;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,12 @@ public class TwitterUserService {
 	
     private TwitterUserRepository twitterUserRepository;
     private PasswordEncoder passwordEncoder;
+    private ValidatorFactory validatorFactory;
 
-    public TwitterUserService(TwitterUserRepository twitterUserRepository, PasswordEncoder passwordEncoder) {
+    public TwitterUserService(TwitterUserRepository twitterUserRepository, PasswordEncoder passwordEncoder, ValidatorFactory validatorFactory) {
         this.twitterUserRepository = twitterUserRepository;
         this.passwordEncoder = passwordEncoder;
+        this.validatorFactory = validatorFactory;
     }
 
     public TwitterUserDTO findById(Integer id) {

@@ -1,6 +1,8 @@
 package com.hb.guillaume_jason.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hb.guillaume_jason.dto.TwitterUserDTO;
 import com.hb.guillaume_jason.dto.TwitterUserFormDTO;
 import com.hb.guillaume_jason.service.TwitterUserService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class TwitterUserController {
@@ -27,10 +31,12 @@ public class TwitterUserController {
 	}
 
 	@PostMapping("/register")
-	public ModelAndView registerUser(@ModelAttribute TwitterUserFormDTO user) {
+	public String registerUser(@Valid @ModelAttribute("user") TwitterUserFormDTO user, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "register";
+		}
 		userService.saveUser(user);
-		ModelAndView mav = new ModelAndView("redirect:/login");
-		return mav;
+		return "redirect:/login";
 	}
 
 }
