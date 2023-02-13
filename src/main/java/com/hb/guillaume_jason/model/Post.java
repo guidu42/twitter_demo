@@ -4,15 +4,15 @@ public class Post implements Identifiable {
     private Integer id;
     private String title;
     private String content;
-    private Category category;
+    private Integer categoryId;
 
     public Post() {
 
     }
 
-    public Post(String title, String content, Category category) {
+    public Post(String title, String content, Integer categoryId) {
         this.title = title;
-        this.category = category;
+        this.categoryId = categoryId;
         this.content = content;
     }
 
@@ -40,11 +40,11 @@ public class Post implements Identifiable {
         this.content = content;
     }
 
-    public Category getCategory() {
-        return category;
+    public Integer getCategory() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(Integer category) {
+        this.categoryId = category;
     }
 }
