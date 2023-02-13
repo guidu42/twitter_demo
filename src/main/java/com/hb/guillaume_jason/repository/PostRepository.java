@@ -36,4 +36,16 @@ public class PostRepository extends AbstractRepository<Post> {
         return values;
     }
 
+    public List<Post> findByCategoryIds(List<Integer> categoriesId) {
+        List<Post> allPosts = this.getAll();
+        List<Post> postFiltered = new ArrayList<>();
+        for (Post post : allPosts) {
+            for (Integer categoryId : categoriesId) {
+                if (post.getCategory().equals(categoryId)) {
+                    postFiltered.add(post);
+                }
+            }
+        }
+        return postFiltered;
+    }
 }

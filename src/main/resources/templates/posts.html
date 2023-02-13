@@ -9,7 +9,15 @@
 <header class="header" th:insert="partials/header"></header>
 <section class="container my-4">
   <h1>Retrouvez ici les posts qui correspondent à vos catégories !</h1>
-
+  <div class="row my-4" th:each="post : ${posts}">
+    <div class="col-4">
+      <div class="card border border-1 border-dark p-3">
+        <h2 th:text="${post.title()}"></h2>
+        <p class="text-center my-2" th:text="${post.content()}"></p>
+        <p class="text-muted mb-0" th:text="${post.categoryId()}"></p>
+      </div>
+    </div>
+  </div>
 </section>
 <footer class="footer" th:insert="partials/footer"></footer>
 </body>
